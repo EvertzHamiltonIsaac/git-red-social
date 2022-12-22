@@ -8,7 +8,7 @@ const Follows = db.define('follows', {
         type: DataTypes.UUID,
         primaryKey: true
     },
-    userId:{
+    userId: {
         type: DataTypes.UUID,
         allowNull: false,
         field: 'follower',
@@ -18,7 +18,7 @@ const Follows = db.define('follows', {
             model: Users
         },
     },
-    userId2:{
+    userId2: {
         type: DataTypes.UUID,
         allowNull: false,
         field: 'followed',
@@ -30,11 +30,11 @@ const Follows = db.define('follows', {
     }
 }, {
     //? Validacion para evitar seguir a una persona 2 veces
-    // uniqueKeys: {
-    //     follows_unique: {
-    //         fields: ['userId', 'userId2']
-    //     }
-    // }
+    uniqueKeys: {
+        follows_unique: {
+            fields: ['userId', 'userId2']
+        }
+    }
 })
 
 //? select * from followers inner join users on followers.userId2 = users.id;
